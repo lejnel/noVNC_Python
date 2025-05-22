@@ -35,30 +35,48 @@ This will install noVNC along with its dependencies from the local source files.
 
 * `--listen HOST:PORT`: Sets the proxy/webserver IP address and port to listen. Default is `http://[::]:5800`.
 * `--target HOST:PORT`: Sets the VNC IP address and port to target.
+* `--cert FILE` : Path of certification file. If the file is pem and have the private key --key is not needed.
+* `--key FILE` : Path of the key file. Neccessarry if the cert does not have the pricate key.
+* `--ssl-only` : Make the website accessible only by `https://[::]:xxxx`.
+
 
 ## Usage
 
 Start the server by running the module:
 
 ```
-novnc --listen <HOST:PORT> --target <VNC_SERVER_IP>:<VNC_SERVER_PORT> 
+novnc --listen <HOST:PORT> --target <VNC_SERVER_IP>:<VNC_SERVER_PORT> --cert <.crt og pem file path> --key <.key file path> --ssl-only 
 ```
 
 ## Example
 
 ```
-novnc --listen 0.0.0.0:8080 --target 127.0.0.1:5900
+http://
+	novnc --listen 0.0.0.0:8080 --target 127.0.0.1:5900
+
+
+https:// with crt and key
+	novnc --listen 0.0.0.0:8080 --target 127.0.0.1:5900 --cert path.pem --key path.key --ssh-only
+
+https:// with pem
+	novnc --listen 0.0.0.0:8080 --target 127.0.0.1:5900 --cert path.pem --ssh-only
+
+Both http:// and https://
+	https:// with pem
+	novnc --listen 0.0.0.0:8080 --target 127.0.0.1:5900 --cert path.pem
+	
 ```
 
 Now server will listens on `0.0.0.0:8080` and targets the VNC server at `127.0.0.1:5900`.
 
 ## Configuration
 
-To customize the program's behavior, you can use the --listen and --target options when running the executable.
+To customize the program's behavior, you can use the --listen and --target with --cert, --key and --ssh-only options when running the executable.
 
 ## Troubleshooting
 
 * **Connection Issues** : Ensure the VNC server is running and accessible. Verify the IP and port.
+* **Certificate Issues**: Make sure your certifikate is valid otherwise the website will show connection_reset or firewall issues. Verify the certificate and private key.
 
 ## License
 
