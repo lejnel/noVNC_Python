@@ -5,7 +5,7 @@ import tempfile
 import argparse
 
 __author__ = "Im Geek (Ankush Bhagat)" "Lejnel (Rasmus Brink)" 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 
 # Construct the path to the data folder
 base_path = os.path.dirname(os.path.abspath(__file__))
